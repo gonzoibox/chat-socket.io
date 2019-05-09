@@ -1,9 +1,16 @@
 const express = require('express');
 const app = express();
-const path =require('path');
+const nunjucks = require('nunjucks');
+
+nunjucks.configure('./client/views', {
+    autoescape: true,
+    express: app
+});
+
+app.use('/assets', express.static('./client/public'));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
+    res.render('index.html', { date: new Date() });
 });
 
 app.listen(3000, '0.0.0.0', () => {
