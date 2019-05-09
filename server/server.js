@@ -17,13 +17,13 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-      console.log(data);
-    });
+    socket.emit('connected','You are connected!!');
+    // socket.on('my other event', function (data) {
+    //   console.log(data);
+    // });
   });
 
-app.listen(3000, '0.0.0.0', () => {
+server.listen(3000, '0.0.0.0', () => {
     console.log('Server started on 3000');
 });
 
